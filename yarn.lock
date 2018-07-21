@@ -199,9 +199,9 @@ axios@^0.16.2:
     follow-redirects "^1.2.3"
     is-buffer "^1.1.5"
 
-"axoncore@git+https://github.com/Khaazz/AxonCore.git":
+"axoncore@git+https://github.com/Khaazz/AxonCore.git#dev":
   version "1.5.0"
-  resolved "git+https://github.com/Khaazz/AxonCore.git#6c71802dada8bb403589df65e3065d3956eb4de3"
+  resolved "git+https://github.com/Khaazz/AxonCore.git#1ecc29d7c016bfcd549f0b821fddeabda5ea6594"
   dependencies:
     eris "git+https://github.com/Khaazz/eris.git#axoncore"
     esm "^3.0.72"
