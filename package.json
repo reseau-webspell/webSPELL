@@ -1,32 +1,39 @@
 {
-  "name": "splashtoonbot",
+  "name": "webspell",
   "version": "0.1.0",
-  "description": "Splashtoon bot - handle rss feed and misc",
+  "description": "webSpell bot - handle rss feed and misc",
   "author": "KhaaZ#0001",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "eris": "^0.8.6",
+    "axoncore": "git+https://github.com/Khaazz/AxonCore.git",
+    "chalk": "^2.4.1",
+    "eris": "git+https://github.com/Khaazz/eris.git#axoncore",
+    "esm": "^3.0.72",
+    "eventemitter3": "^3.1.0",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.3",
-    "pm2": "^3.0.0"
+    "pm2": "^3.0.0",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
+    "cloc": "^2.3.3",
     "eslint": "^5.1.0",
     "yarn": "^1.7.0"
   },
   "main": "index.js",
   "scripts": {
+    "lint": "lint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node -r esm src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Khaazz/splashtoonBot.git"
+    "url": "git+https://github.com/Khaazz/webSPELL.git"
   },
   "bugs": {
-    "url": "https://github.com/Khaazz/splashtoonBot/issues"
+    "url": "https://github.com/Khaazz/webSPELL/issues"
   },
-  "homepage": "https://github.com/Khaazz/splashtoonBot#readme",
+  "homepage": "https://github.com/Khaazz/webSPELL#readme",
   "keywords": [
     "bot",
     "discord",

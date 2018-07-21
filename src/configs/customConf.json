@@ -1,0 +1,28 @@
+{
+    "general": {
+        "name": "webSPELL",
+        "description": "webSPELL - RSS news and others (webSPELL network)"
+    },
+    
+    "prefix": {
+        "general": "//",
+        "owner": "!!",
+        "admin": "e."
+    },
+    
+    "ids": {
+        "owners": ["179908288337412096"],
+        "admins": ["179908288337412096", "205439821236142082"]
+    },
+
+    "configPath": {
+        "general": "/home/khaaz/GIT/webSPELL/src/configs/generalConf.json",
+        "template": "/home/khaaz/GIT/webSPELL/src/configs/templateConf.json",
+        "tokens": "/home/khaaz/GIT/webSPELL/src/configs/tokenConf.json"
+    },
+
+    "debugMode": false,
+
+    "customLogger": true,
+    "customDB": true
+}

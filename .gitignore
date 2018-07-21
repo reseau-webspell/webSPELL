@@ -1,3 +1,6 @@
+# conf
+src/configs/tokenConf.json
+
 # Logs
 logs
 *.log
