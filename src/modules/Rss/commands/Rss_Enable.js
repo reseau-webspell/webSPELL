@@ -52,7 +52,7 @@ class Enable extends Command {
                 name: this.bot.user.username + ` (${type})`
             }, `WebSpell RSS feed (${type}.`);
         } catch(err) {
-            return this.error('No manage webhooks permission in that channel!', err, 'API');
+            return this.error(msg, err, 'API', 'No manage webhooks permission in that channel!');
         }
 
         const guildObj = {
@@ -69,7 +69,7 @@ class Enable extends Command {
             try {
                 await this.bot.deleteWebhook(res.webhookID, res.webhookToken, `WebSpell RSS feed (${type}.`);
             } catch(err) {
-                return this.error('No manage webhooks permission in that channel!', err, 'API');
+                return this.error(msg, err, 'API', 'No manage webhooks permission in that channel!');
             }
         }
         

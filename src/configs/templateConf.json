@@ -8,8 +8,8 @@
     },
 
     "emote": {
-        "error": "<:error:426906693624922113>",
-        "success": "<:success:426906630463160330>",
+        "error": "<:error:470977663356633099>",
+        "success": "<:success:470977663553503242>",
         "loading": "<a:loading:397911964988342282>",
         "update": "<:update:373546418952077323>",
         "info": ":information_source:"
@@ -17,10 +17,10 @@
 
     "message": {
         "error": {
-            "permBot": "I don't have sufficient permissions to do that!",
-            "permSource": "You don't have sufficient permissions to do that!",
-            "permDest": "This user is a mod/admin, I can't do that!",
-            "cooldown": "Please, slow down!",
+            "permBot": "Je n'ai pas les permissions nécessaire pour cette action!",
+            "permSource": "Vous n'avez pas les permissions neécessaires pour cette action!",
+            "permDest": "Cet utilisateur est un mod/admin, je ne peux pas faire ca!",
+            "cooldown": "Eh! Moins vite!",
             "general": "An unexpected error occured! Contact Bot developers."
         }
     }

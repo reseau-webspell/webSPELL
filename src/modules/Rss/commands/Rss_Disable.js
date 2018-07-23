@@ -49,7 +49,7 @@ class Disable extends Command {
         try {
             await this.bot.deleteWebhook(res.webhookID, res.webhookToken, `WebSpell RSS feed (${type}.`);
         } catch(err) {
-            return this.error('No manage webhooks permission in that channel!', err, 'API');
+            return this.error(msg, err, 'API', 'No manage webhooks permission in that channel!');
         }
 
         return this.sendSuccess(msg.channel, `Vous avez bien désactivé les RSS pour **${type}**.`);
