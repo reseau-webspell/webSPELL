@@ -12,13 +12,11 @@ try {
     Bot.Logger.notice('Connected to webSpell DataBase.');
     Bot.executeWebhook(loaderWH.id, loaderWH.token, {
         'username': 'DataBase Loader',
-        'avatarURL': Bot.user.avatarURL,
         'content': 'Connected to WebSPELL DataBase!',
     });
 } catch (e) {
     Bot.executeWebhook(loaderWH.id, loaderWH.token, {
         'username': 'DataBase Loader',
-        'avatarURL': Bot.user.avatarURL,
         'content': ` Could not connect to WebSpell DataBase!\n${e.message}`,
     });
     Bot.Logger.emerg('Could NOT connect to WebSpell DataBase.\n' + e.stack);
@@ -33,7 +31,6 @@ process.on('uncaughtException', (err) => {
 
     Bot.executeWebhook(errorWH.id, errorWH.token, {
         'username': 'Error',
-        'avatarURL': Bot.user.avatarURL,
         'content': `Uncaught Exception!\n${err.message}`,
     });
 
@@ -47,7 +44,6 @@ process.on('unhandledRejection', (err) => {
     
     Bot.executeWebhook(errorWH.id, errorWH.token, {
         'username': 'Error',
-        'avatarURL': Bot.user.avatarURL,
         'content': `Unhandled Rejection!\n${err.message}`,
     });
 });
@@ -57,7 +53,6 @@ Bot.on('error', (err) => {
 
     Bot.executeWebhook(errorWH.id, errorWH.token, {
         'username': 'Error',
-        'avatarURL': Bot.user.avatarURL,
         'content': `Error!\n${err.message}`,
     });
 });
@@ -66,7 +61,6 @@ Bot.on('warn', (msg) => {
     Bot.Logger.warn(msg);
     Bot.executeWebhook(errorWH.id, errorWH.token, {
         'username': 'Warn',
-        'avatarURL': Bot.user.avatarURL,
         'content': `Warn!\n${msg}`,
     });
 });
@@ -176,7 +170,6 @@ Bot.connect().then(() => {
     Bot.Logger.notice('=== ONLINE ===');
     Bot.executeWebhook(generalWH.id, generalWH.token, {
         'username': 'Uptime',
-        'avatarURL': Bot.user.avatarURL,
         'content': 'ONLINE!',
     });
 });
