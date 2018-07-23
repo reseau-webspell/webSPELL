@@ -24,7 +24,7 @@ class Rss extends Module {
         };
 
         this._splashtoonAPI = new SplashtoonAPI(this);
-        //this._nintendozAPI = new NintendozAPI(this);
+        this._nintendozAPI = new NintendozAPI(this);
 
         this.init(commands);
     }
