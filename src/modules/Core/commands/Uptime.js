@@ -41,7 +41,7 @@ class Uptime extends Command {
 
         this.sendMessage(msg.channel, {
             embed: {
-                color: this.bot.configs.confTemplate.embed.colors.global,
+                color: this.Template.embed.colors.global,
                 author: {
                     name: 'Uptime',
                     icon_url: msg.author.avatarURL

@@ -41,7 +41,7 @@ class Blacklist extends Command {
 
         let conf;
         try {
-            conf = await this.bot.fetchEaseConf();
+            conf = await this.bot.fetchAxonConf();
         } catch (err) {
             return this.error(msg, err, 'db');
         }
