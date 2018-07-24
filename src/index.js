@@ -3,10 +3,13 @@ import Bot from './Bot';
 // packages
 import mongoose from 'mongoose';
 
-const generalWH = { id: '470976289126219776', token: 'IlbJSdh2OUDEVheYpeL9JtG1YTmzz0IXkwFfalP0qBJJO9Usyl3-6Sm2LA-6xPsAVChN' };
-const loaderWH = { id: '470976387059023872', token: 'Pz2N1I6D49b-9tXE2mh-V0vQpmJKfg5hkVMdhhpk_8G_ZYa5pPChe2k-wxc-lIcKCPl9' };
-const errorWH = { id: '470976423071580177', token: 'C5l8as6hxCd9tHvjxOOELNF5_mkXPm3-VoQbAVT0ViIce8-WofdJkoYdmgysvIpBXV8t' };
-const guildWH = { id: '470978963020316682', token: 'uUZY42dI_H8DUcjg7amEEYOclhIdGrKYYNLnupjrvUtUmWzFSZmfGoxTsMFNgmgpca9o' };
+import tokens from './configs/tokenConf.json';
+const wh = tokens.webHook;
+const generalWH = { id: wh.general.id, token: wh.general.token };
+const loaderWH = { id: wh.loader.id, token: wh.loader.token };
+const errorWH = { id: wh.error.id, token: wh.error.token };
+const guildWH = { id: wh.guildLog.id, token: wh.guildLog.token };
+
 try {
     mongoose.connect('mongodb://localhost/webSpellDB');
     Bot.Logger.notice('Connected to webSpell DataBase.');

@@ -31,13 +31,46 @@ class WebSpell extends AxonClient {
                 reject(err);
             }
         });
-    }    
+    }
+
+    sendFullHelp(msg) {
+        return this.bot.createMessage(msg.channel.id, {
+            embed: {
+                author: {
+                    name: this.user.username,
+                    url: 'https://webspell.fr',
+                    icon_url: this.user.avatarURL
+                },
+                title: 'Message d\'aide',
+                url: 'https://webspell.fr',
+                description: 'WebSPELL - un bot multi fonction pour le réseau WebSPELL.\nSuivez l\'actualité des sites du réseau WebSPELL simplement!',
+                fields: [
+                    {
+                        name: 'RSS',
+                        value: '`//rss enable <splashtoon|nintendoz> <#channel>`\n`//rss disable <splashtoon|nintendoz>`'
+                    },
+                    {
+                        name: 'Gestion',
+                        value: '`//prefix <prefix>` - changer de prefix\n`//botnick <nickname>` - changer le nickname du bot'
+                    },
+                    {
+                        name: 'Support server',
+                        value: 'https://discord.gg/49sApBV'
+                    }
+                ],
+                timestamp: new Date(),
+                footer: {
+                    text: 'Run with AxonCore(https://github.com/Khaazz/AxonCore)'
+                }
+            }
+        });
+    }
 
     /** CURRENTLY DISABLED */
-    $initStatus() {
+    initStatus() {
         this.editStatus(null, {
-            name: `webSPELL | ${this.params.prefix[0]}help`,
-            type: 0
+            name: `webspell.fr | ${this.params.prefix[0]}help`,
+            type: 3
         });
     }
 
