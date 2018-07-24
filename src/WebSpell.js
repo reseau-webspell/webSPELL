@@ -34,7 +34,7 @@ class WebSpell extends AxonClient {
     }
 
     sendFullHelp(msg) {
-        return this.bot.createMessage(msg.channel.id, {
+        return this.createMessage(msg.channel.id, {
             embed: {
                 author: {
                     name: this.user.username,
@@ -63,6 +63,8 @@ class WebSpell extends AxonClient {
                     text: 'Run with AxonCore(https://github.com/Khaazz/AxonCore)'
                 }
             }
+        }).catch(err => {
+            this.Logger.warn('Full Help - No sendMessage permission!');
         });
     }
 
