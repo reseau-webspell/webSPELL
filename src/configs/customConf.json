@@ -1,7 +1,9 @@
 {
     "general": {
         "name": "webSPELL",
-        "description": "webSPELL - RSS news and others (webSPELL network)"
+        "description": "webSPELL - RSS news and others (webSPELL network)",
+        "version": "1.0.0",
+        "library": "eris"
     },
     
     "prefix": {
@@ -10,19 +12,27 @@
         "admin": "e."
     },
     
-    "ids": {
-        "owners": ["179908288337412096", "205439821236142082"],
-        "admins": ["179908288337412096", "205439821236142082"]
-    },
-
-    "configPath": {
-        "general": "/home/khaaz/GIT/webSPELL/src/configs/generalConf.json",
-        "template": "/home/khaaz/GIT/webSPELL/src/configs/templateConf.json",
-        "tokens": "/home/khaaz/GIT/webSPELL/src/configs/tokenConf.json"
+    "staff": {
+        "owners": [ 
+            {
+                "name": "KhaaZ#0001",
+                "id": "179908288337412096"
+            },
+            {
+                "name": "uRl_-#7777",
+                "id": "205439821236142082"
+            }
+        ],
+        "admins": [ 
+            {
+                "name": "",
+                "id": ""
+            }
+        ]
     },
 
     "debugMode": false,
 
-    "customLogger": true,
-    "customDB": true
+    "logger": 1,
+    "db": 1
 }

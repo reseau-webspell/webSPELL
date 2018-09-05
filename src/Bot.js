@@ -2,8 +2,21 @@
 
 import WebSpell from './WebSpell';
 
-import config from './configs/customConf.json';
+import axonConf from './configs/customConf.json';
 import tokenConf from './configs/tokenConf.json';
+import templateConf from './configs/templateConf.json';
+
+
+const AxonOptions = {
+    axonConf,
+    templateConf,
+    tokenConf,
+
+    resolver: null,
+    utils: null, // use your own Utils
+    axonSchema: null,
+    guildSchema: null,
+};
 
 const Bot = new WebSpell(
     tokenConf.bot.token,
@@ -14,9 +27,9 @@ const Bot = new WebSpell(
         disableEveryone: true,
         getAllUsers: true,
         messageLimit: 100,
-        restMode: true
+        restMode: true,
     },
-    config
+    AxonOptions
 );
 
 export default Bot;

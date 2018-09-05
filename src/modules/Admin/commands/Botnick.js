@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class Botnick extends Command {
-
     constructor(module) {
         super(module);
 
@@ -12,26 +11,24 @@ class Botnick extends Command {
 
         this.infos = {
             owner: ['Ape', 'Eleos'],
-            cmdName: 'botnick',
+            name: 'botnick',
             description: 'Changes the nickname of the bot.',
+            usage: 'botnick [nickname]',
             examples: ['botnick', 'botnick Best Bot'],
-            arguments: [['nickname', true]]
         };
 
         this.permissions.bot = ['changeNickname'];
         this.permissions.user.needed = ['manageNicknames'];
-        
-        this.options.guildOnly = true;
     }
 
     async execute({ msg, args }) {
         let nickname = args.join(' ');
 
-        if(nickname == '') {
+        if (nickname === '') {
             nickname = this.bot.user.username;
         }
 
-        if(nickname.length > 32) {
+        if (nickname.length > 32) {
             return this.sendError(msg.channel, 'The nickname can\'t be longer than 32 characters!');
         }
 
@@ -39,8 +36,7 @@ class Botnick extends Command {
             await this.bot.editNickname(msg.channel.guild.id, nickname);
 
             return this.sendSuccess(msg.channel, `My nickname is now **${nickname}**.`);
-        }
-        catch (err) {
+        } catch (err) {
             return this.error(msg, err, 'API');
         }
     }

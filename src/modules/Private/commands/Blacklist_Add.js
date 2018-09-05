@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class BlacklistAdd extends Command {
-
     constructor(module) {
         super(module);
 
@@ -14,15 +13,16 @@ class BlacklistAdd extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'blacklist add',
+            ame: 'blacklist add',
             description: 'Add a user/guild to the blacklist.',
+            usage: 'blacklist add [user/guild]',
             examples: ['blacklist add 412348024526995457'],
-            arguments: [['guildID OR userID', false]]
         };
 
         this.options.argsMin = 1;
 
-        this.permissions.staff.needed = this.bot.staff.owners;
+        this.permissions.staff.needed = this.axon.staff.owners;
+        this.permissions.staff.bypass = this.axon.staff.owners;
     }
 
     async execute({ msg, args }) {
@@ -34,8 +34,8 @@ class BlacklistAdd extends Command {
 
         if (guild) {
             try {
-                await this.bot.updateBlacklistGuild(guild.id, true);
-                this.bot.Logger.info(`Blacklisted Guild: ${guild.name} - ${guild.id}`);
+                await this.axon.updateBlacklistGuild(guild.id, true);
+                this.Logger.info(`Blacklisted Guild: ${guild.name} - ${guild.id}`);
                 return this.sendSuccess(msg.channel, `**${guild.name}**-[${guild.id}] was successfully blacklisted!`);
             } catch (err) {
                 return this.error(msg, err, 'internal');
@@ -44,8 +44,8 @@ class BlacklistAdd extends Command {
 
         if (user) {
             try {
-                await this.bot.updateBlacklistUser(user.id, true);
-                this.bot.Logger.info(`Blacklisted User: ${user.username}#${user.discriminator} - ${user.id}`);
+                await this.axon.updateBlacklistUser(user.id, true);
+                this.Logger.info(`Blacklisted User: ${user.username}#${user.discriminator} - ${user.id}`);
                 return this.sendSuccess(msg.channel, `User **${user.username}#${user.discriminator}**-[${user.id}] was successfully blacklisted!`);
             } catch (err) {
                 return this.error(msg, err, 'internal');

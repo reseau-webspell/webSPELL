@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class Prefix extends Command {
-
     constructor(module) {
         super(module);
 
@@ -12,23 +11,22 @@ class Prefix extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'prefix',
+            name: 'prefix',
             description: 'See or change the guild prefix.',
+            usage: 'prefix [prefix]',
             examples: ['prefix', 'prefix e!'],
-            arguments: [['prefix', true]]
         };
-        
+
         this.serverBypass = true;
         this.permissions.bot = ['sendMessages'];
         this.permissions.user.needed = ['manageGuild'];
-        this.permissions.staff.bypass = this.bot.staff.owners;
+        this.permissions.staff.bypass = this.axon.staff.owners;
 
         this.options.argsMin = 0;
         this.options.guildOnly = true;
     }
 
     execute({ msg, args, guildConf }) {
-        
         const prefix = (guildConf.prefix.length ? guildConf.prefix : this.bot.params.prefix)[0];
 
         if (args[0]) {

@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class BlacklistRemove extends Command {
-
     constructor(module) {
         super(module);
 
@@ -14,15 +13,16 @@ class BlacklistRemove extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'blacklist remove',
+            name: 'blacklist remove',
             description: 'Remove a user/guild from blacklist.',
+            usage: 'blacklist remove [user/guild]',
             examples: ['blacklist remove 412348024526995457'],
-            arguments: [['guildID OR userID', false]]
         };
 
         this.options.argsMin = 1;
-        
-        this.permissions.staff.needed = this.bot.staff.owners;
+
+        this.permissions.staff.needed = this.axon.staff.owners;
+        this.permissions.staff.bypass = this.axon.staff.owners;
     }
 
     async execute({ msg, args }) {
@@ -31,14 +31,14 @@ class BlacklistRemove extends Command {
 
         const black = !user ? /^[0-9]*$/.test(args[0]) && args[0] : null;
 
-        if (!user && ! black) {
+        if (!user && !black) {
             return this.sendError(msg.channel, 'This guild/user doesn\'t exist');
         }
 
         if (guild) {
             try {
-                await this.bot.updateBlacklistGuild(guild.id, false);
-                this.bot.Logger.info(`Unblacklisted Guild: ${guild.name} - ${guild.id}`);
+                await this.axon.updateBlacklistGuild(guild.id, false);
+                this.Logger.info(`Unblacklisted Guild: ${guild.name} - ${guild.id}`);
                 return this.sendSuccess(msg.channel, `**${guild.name}**-[${guild.id}] was successfully unblacklisted!`);
             } catch (err) {
                 return this.error(msg, err, 'internal');
@@ -47,8 +47,8 @@ class BlacklistRemove extends Command {
 
         if (user) {
             try {
-                await this.bot.updateBlacklistUser(user.id, false);
-                this.bot.Logger.info(`Unblacklisted User: ${user.username}#${user.discriminator} - ${user.id}`);
+                await this.axon.updateBlacklistUser(user.id, false);
+                this.Logger.info(`Unblacklisted User: ${user.username}#${user.discriminator} - ${user.id}`);
                 return this.sendSuccess(msg.channel, `User **${user.username}#${user.discriminator}**-[${user.id}] was successfully unblacklisted!`);
             } catch (err) {
                 return this.error(msg, err, 'internal');
@@ -57,9 +57,12 @@ class BlacklistRemove extends Command {
 
         if (black) {
             try {
-                await this.bot.updateBlacklistGuild(black, false);
-                await this.bot.updateBlacklistUser(black, false);
-                this.bot.Logger.info(`Unblacklisted: ${black}`);
+                await Promise.all([
+                    this.axon.updateBlacklistGuild(black, false),
+                    this.axon.updateBlacklistUser(black, false),
+                ]);
+
+                this.Logger.info(`Unblacklisted: ${black}`);
                 return this.sendSuccess(msg.channel, `${black} was successfully unblacklisted!`);
             } catch (err) {
                 return this.error(msg, err, 'internal');

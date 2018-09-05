@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class Pong extends Command {
-
     constructor(module) {
         super(module);
 
@@ -15,10 +14,10 @@ class Pong extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'ping pong',
+            name: 'ping pong',
             description: 'Pong the bot.',
+            usage: 'ping pong',
             examples: ['ping pong'],
-            arguments: []
         };
 
         this.options.argsMin = 0;
@@ -35,7 +34,7 @@ class Pong extends Command {
         }
 
         const diff = (Date.now() - start);
-        
+
         return this.editMessage(mess, `BADABOUM! \`${diff}ms\``);
     }
 }

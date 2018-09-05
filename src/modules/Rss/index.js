@@ -2,14 +2,12 @@
 
 import { Module } from 'axoncore';
 
-import SplashtoonAPI from './api/SplashtoonAPI';
-import NintendozAPI from './api/NintendozAPI';
+import APIHandler from './api/APIHandler';
 
 import * as commands from './commands/index';
-//import * as events from './commands/index';
+// import * as events from './events/index';
 
 class Rss extends Module {
-
     constructor(...args) {
         super(...args);
 
@@ -23,8 +21,7 @@ class Rss extends Module {
             description: 'API and commands to receive rss feed.',
         };
 
-        this._splashtoonAPI = new SplashtoonAPI(this);
-        this._nintendozAPI = new NintendozAPI(this);
+        this.APIHandler = new APIHandler(this);
 
         this.init(commands);
     }

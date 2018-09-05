@@ -6,7 +6,6 @@ import execa from 'execa';
 import { Command } from 'axoncore';
 
 class Exec extends Command {
-
     constructor(module) {
         super(module);
 
@@ -15,15 +14,16 @@ class Exec extends Command {
 
         this.infos = {
             owner: ['AS04'],
-            cmdName: 'exec',
+            name: 'exec',
             description: 'Execute terminal commands directly from Discord. (cannot accept user input)',
+            usage: 'exec [input]',
             examples: ['exec pm2 list'],
-            arguments: [['command', false]]
         };
 
         this.options.argsMin = 1;
 
-        this.permissions.staff.needed = this.bot.staff.owners;
+        this.permissions.staff.needed = this.axon.staff.owners;
+        this.permissions.staff.bypass = this.axon.staff.owners;
     }
 
     /**
@@ -36,7 +36,7 @@ class Exec extends Command {
         let result;
         try {
             const res = await execa(command, args, {
-                timeout: (120 * 1000)
+                timeout: (120 * 1000),
             });
             result = {
                 success: true,
@@ -44,7 +44,7 @@ class Exec extends Command {
                 error: res.stderr ? res.stderr : undefined,
                 command: res.cmd,
                 failed: res.failed,
-                original: res
+                original: res,
             };
         } catch (e) {
             result = {
@@ -52,7 +52,7 @@ class Exec extends Command {
                 toString: e.toString(),
                 failed: e.failed,
                 command: e.cmd,
-                original: e
+                original: e,
             };
         }
         return result;
@@ -68,7 +68,7 @@ class Exec extends Command {
         let gist = {};
         gist.files = {};
         gist.files[`${title}.${extension}`] = {
-            content: data
+            content: data,
         };
 
         gist = await superagent
@@ -77,7 +77,7 @@ class Exec extends Command {
             .type('application/json')
             .timeout({
                 response: 5000,
-                deadline: 15000
+                deadline: 15000,
             });
         gist = gist.body;
 

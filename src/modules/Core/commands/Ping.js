@@ -5,7 +5,6 @@ import { Command } from 'axoncore';
 import Pong from './Ping_Pong';
 
 class Ping extends Command {
-
     constructor(module) {
         super(module);
 
@@ -17,10 +16,10 @@ class Ping extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'ping',
+            name: 'ping',
             description: 'Ping the bot.',
+            usage: 'ping',
             examples: ['ping'],
-            arguments: []
         };
 
         this.options.argsMin = 0;
@@ -38,7 +37,7 @@ class Ping extends Command {
         }
 
         const diff = (Date.now() - start);
-        
+
         return this.editMessage(mess, `Pong! \`${diff}ms\``);
     }
 }

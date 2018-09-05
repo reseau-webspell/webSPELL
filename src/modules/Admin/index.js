@@ -3,10 +3,9 @@
 import { Module } from 'axoncore';
 
 import * as commands from './commands/index';
-import * as events from './commands/index';
+// import * as events from './event/index';
 
 class Admin extends Module {
-
     constructor(...args) {
         super(...args);
 
@@ -20,7 +19,7 @@ class Admin extends Module {
             description: 'Commands for server admins.',
         };
 
-        this.init(commands, events);
+        this.init(commands);
     }
 }
 
