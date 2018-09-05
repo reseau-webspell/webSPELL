@@ -1,7 +1,7 @@
 {
   "name": "webspell",
-  "version": "0.1.0",
-  "description": "webSpell bot - handle rss feed and misc",
+  "version": "1.0.0",
+  "description": "webSpell bot - handle rss feed",
   "author": "KhaaZ#0001",
   "license": "ISC",
   "dependencies": {
@@ -11,12 +11,10 @@
     "esm": "^3.0.72",
     "eventemitter3": "^3.1.0",
     "execa": "^0.10.0",
-    "moment": "^2.22.2",
     "mongoose": "^5.2.3",
     "pm2": "^3.0.0",
     "rss-parser": "^3.4.2",
-    "superagent": "^3.8.3",
-    "winston": "^3.0.0"
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "cloc": "^2.3.3",
@@ -27,7 +25,8 @@
   "scripts": {
     "lint": "lint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r esm src/index.js"
+    "start": "node -r esm src/index.js",
+    "pm2start": "node scripts/start.js"
   },
   "repository": {
     "type": "git",
