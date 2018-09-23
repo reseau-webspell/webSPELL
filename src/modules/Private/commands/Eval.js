@@ -20,6 +20,7 @@ class Eval extends Command {
         };
 
         this.options.argsMin = 1;
+        this.options.cooldown = null;
 
         this.permissions.staff.needed = this.axon.staff.owners;
         this.permissions.staff.bypass = this.axon.staff.owners;
@@ -74,7 +75,7 @@ class Eval extends Command {
             }
             return this.sendMessage(msg.channel, `\`\`\`js\n${evaled}\`\`\``);
         } catch (err) {
-            this.bot.Logger.debug(err.stack);
+            this.axon.Logger.debug(err.stack);
             return this.sendMessage(msg.channel, err.message);
         }
     }

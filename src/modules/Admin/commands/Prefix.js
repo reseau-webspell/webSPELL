@@ -27,16 +27,16 @@ class Prefix extends Command {
     }
 
     execute({ msg, args, guildConf }) {
-        const prefix = (guildConf.prefix.length ? guildConf.prefix : this.bot.params.prefix)[0];
+        const prefix = (guildConf.prefix.length ? guildConf.prefix : this.axon.params.prefix)[0];
 
         if (args[0]) {
             const newPrefix = args[0];
 
-            this.bot.registerGuildPrefix(msg.channel.guild.id, [newPrefix]);
-            return this.sendSuccess(msg.channel, `New prefix registered: \`${newPrefix}\``);
+            this.axon.registerGuildPrefix(msg.channel.guild.id, [newPrefix]);
+            return this.sendSuccess(msg.channel, `Nouveau prefix enregistré: \`${newPrefix}\``);
         }
 
-        return this.sendMessage(msg.channel, `The prefix is: \`${prefix}\``);
+        return this.sendMessage(msg.channel, `Le prefix est: \`${prefix}\``);
     }
 }
 

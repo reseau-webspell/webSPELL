@@ -22,9 +22,10 @@ class WebSpell extends AxonClient {
     }
 
     /** CURRENTLY DISABLED */
-    $init() {
+    init() {
         return new Promise((resolve, reject) => {
             try {
+                this.client.once('ready', () => this.modules.get('Rss').APIHandler.init());
                 resolve(true);
             } catch (err) {
                 reject(err);
@@ -33,12 +34,12 @@ class WebSpell extends AxonClient {
     }
 
     sendFullHelp(msg) {
-        return this.Axonutils.sendMessage(msg.channel, {
+        return this.AxonUtils.sendMessage(msg.channel, {
             embed: {
                 author: {
-                    name: this.user.username,
+                    name: this.client.user.username,
                     url: 'https://webspell.fr',
-                    icon_url: this.user.avatarURL,
+                    icon_url: this.client.user.avatarURL,
                 },
                 title: 'Message d\'aide',
                 url: 'https://webspell.fr',
@@ -46,20 +47,24 @@ class WebSpell extends AxonClient {
                 fields: [
                     {
                         name: 'RSS',
-                        value: '`//rss enable <splashtoon|nintendoz> <#channel>`\n`//rss disable <splashtoon|nintendoz>`',
+                        value: '`//rss enable <site> <#channel>`\n`//rss disable <site>`\n`//rss list`\n`//rss role <site>`\n`//rss push <list>`',
+                    },
+                    {
+                        name: 'Liste des sites',
+                        value: '<:splashtoon:481835135734382613> `splashtoon`\n<:nintendoz:481835219733839882> `nintendoz`\n<:xbox:479594781425532928> `xbox`\n<:playstation:479594780939255818> `playstation`\n<:paladins:479594780943187968> `paladins`\n<:fortnite:481853380382294022> `fortnite`\n<:steam:481839393410252800> `steam`\n<:ubisoft:481854145356365825> `ubisoft`\n<:overwatch:482583961483345950> `overwatch`\n<:nintendo:481840308641071104> `ninten`\n<:vakarm:483570930342428672> `vakarm`',
                     },
                     {
                         name: 'Gestion',
                         value: '`//prefix <prefix>` - changer de prefix\n`//botnick <nickname>` - changer le nickname du bot',
                     },
                     {
-                        name: 'Support server',
+                        name: 'Serveur de Support',
                         value: 'https://discord.gg/49sApBV',
                     },
                 ],
                 timestamp: new Date(),
                 footer: {
-                    text: 'Run with AxonCore(https://github.com/Khaazz/AxonCore)',
+                    text: 'Runs with AxonCore(https://github.com/Khaazz/AxonCore)',
                 },
             },
         });
