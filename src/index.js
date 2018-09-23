@@ -8,7 +8,7 @@ import { webhooks } from './configs/tokenConf.json';
 const guildWH = { id: webhooks.guild.id, token: webhooks.guild.token };
 
 try {
-    mongoose.connect('mongodb://localhost/webSpellDevDB');
+    mongoose.connect('mongodb://localhost/webSpellDB');
     Bot.Logger.notice('Connected to webSpell DataBase.');
     Bot.AxonUtils.triggerWebhook('loader', {
         color: 0x008000,
