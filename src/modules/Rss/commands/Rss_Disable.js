@@ -3,7 +3,6 @@
 import { Command } from 'axoncore';
 
 class Disable extends Command {
-
     constructor(module) {
         super(module);
 
@@ -14,45 +13,35 @@ class Disable extends Command {
 
         this.infos = {
             owner: ['KhaaZ'],
-            cmdName: 'disable',
+            name: 'rss disable',
             description: 'Disable rss feed.',
-            examples: ['disable'],
-            arguments: []
+            usage: 'rss disable [feed name | feed url]',
+            examples: ['rss disable splashtoon'],
         };
 
         this.options.argsMin = 1;
         this.options.cooldown = 10000;
-        this.options.guildOnly = false;
 
-        this.permissions.bot = ['manageWebhooks'];
-        //this.permissions.serverAdmin = true;
         this.permissions.user.needed = ['manageGuild'];
+        this.permissions.serverAdmin = true;
+    }
+
+    get rssHandler() {
+        return this.module.APIHandler;
     }
 
     async execute({ msg, args }) {
-        const type = args[0].toLowerCase();
-
-        let API;
-        API = (type === 'splashtoon') ? this.module._splashtoonAPI : null ;
-        !API && (API = (type === 'nintendoz') ? this.module._nintendozAPI : null);
-        
-        if (!API) {
-            return this.sendError(msg.channel, 'Vous devez choisir un webhook a supprimer (`splashtoon` ou `nintendoz`)');
+        const api = this.rssHandler.getAPI(args[0]);
+        if (!api) {
+            return this.sendError(msg.channel, 'Ce feed n\'existe pas!');
         }
 
-        const res = await API.removeGuildObj(msg.channel.guild.id);
-        if (res === null) {
-            return this.sendError(msg.channel, 'Ce feed RSS n\'existe pas.');
-        }
-        
-        /** Deletion du webhook */
-        try {
-            await this.bot.deleteWebhook(res.webhookID, res.webhookToken, `WebSpell RSS feed (${type}.`);
-        } catch(err) {
-            return this.error(msg, err, 'API', 'No manage webhooks permission in that channel!');
-        }
+        const res = await this.rssHandler.unsubscribeFeed(api.url, msg.channel.guild.id);
 
-        return this.sendSuccess(msg.channel, `Vous avez bien désactivé les RSS pour **${type}**.`);
+        if (res) {
+            return this.sendSuccess(msg.channel, `Vous avez bien désactivé les RSS pour **${api.name || api.url}**.`);
+        }
+        return this.sendError(msg.channel, 'Ce feed est déja désactivé!');
     }
 }
 
