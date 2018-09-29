@@ -48,7 +48,7 @@ class List extends Command {
                     chan = tmp.name;
                 }
 
-                let text = `**${api.url}**${api.name ? `(${api.name})` : ''} - **${chan}**(${gObj.chan})`;
+                let text = `**${api.name ? api.name : api.url}** - **${chan}**(${gObj.chan})`;
                 if (gObj.role) {
                     text += `\n - **role**: ${(gObj.role === 'everyone' || gObj.role === 'here') ? `@${gObj.role}` : `<@&${gObj.role}>`}`;
                 }
