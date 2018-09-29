@@ -12,6 +12,7 @@ import Create from './Rss_Create';
 import Update from './Rss_Update';
 import Remove from './Rss_Remove';
 import Upgrade from './Rss_Upgrade';
+import Test from './Rss_Test';
 
 class Rss extends Command {
     constructor(module) {
@@ -21,7 +22,7 @@ class Rss extends Command {
         this.aliases = ['rss'];
 
         this.hasSubcmd = true;
-        this.subcmds = [Enable, Disable, List, Push, Role, Add, Create, Update, Remove, Upgrade];
+        this.subcmds = [Enable, Disable, List, Push, Role, Add, Create, Update, Remove, Upgrade, Test];
 
         this.infos = {
             owner: ['KhaaZ'],
