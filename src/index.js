@@ -29,9 +29,9 @@ Bot.AxonUtils.triggerWebhook('status', {
     description: 'ONLINE!',
 });
 
-Bot.on('guildCreate', (guild) => {
+Bot.client.on('guildCreate', (guild) => {
     const owner = guild.members.find(member => member.user.id === guild.ownerID).user;
-    Bot.executeWebhook(guildWH.id, guildWH.token, {
+    Bot.client.executeWebhook(guildWH.id, guildWH.token, {
         username: guild.name,
         avatarURL: guild.iconURL,
         embeds: [
@@ -39,7 +39,7 @@ Bot.on('guildCreate', (guild) => {
                 color: 3066993, // green
                 title: '<:success:470977663553503242> Guild created',
                 footer: {
-                    text: `${Bot.user.username} | Created at`,
+                    text: `${Bot.client.user.username} | Created at`,
                 },
                 timestamp: new Date(),
                 fields: [
@@ -79,9 +79,9 @@ Bot.on('guildCreate', (guild) => {
     });
 });
 
-Bot.on('guildDelete', (guild) => {
+Bot.client.on('guildDelete', (guild) => {
     const owner = guild.members.find(member => member.user.id === guild.ownerID).user;
-    Bot.executeWebhook(guildWH.id, guildWH.token, {
+    Bot.client.executeWebhook(guildWH.id, guildWH.token, {
         username: guild.name,
         avatarURL: guild.iconURL,
         embeds: [
@@ -89,7 +89,7 @@ Bot.on('guildDelete', (guild) => {
                 color: 15158332, // red
                 title: '<:error:470977663356633099> Guild deleted',
                 footer: {
-                    text: `${Bot.user.username} | Deleted at`,
+                    text: `${Bot.client.user.username} | Deleted at`,
                 },
                 timestamp: new Date(),
                 fields: [
