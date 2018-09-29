@@ -88,7 +88,6 @@ class RssAPI {
         return false;
     }
 
-
     /**
      * Query RSS feed url
      * extract data and guid
@@ -102,10 +101,10 @@ class RssAPI {
         const resJson = await this.parser.parseURL(this._url);
         const last = resJson.items[0];
 
-        if (last.guid === this.last) {
+        if (last.guid === this.last || last.isoDate === this.last) {
             return [last, null];
         }
-        return [this.createContent(last), last.guid];
+        return [this.createContent(last), last.guid ? last.guid : last.isoDate];
     }
 
     /**
@@ -177,19 +176,20 @@ class RssAPI {
      * @returns {Array[wh, options]} Webhook object + options to send
      * @memberof RssAPI
      */
-    formatData(gID, opt, options) {
+    formatData(gID, opt, data) {
         const guild = this.handler.guilds.get(gID);
         if (!guild) {
             delete this.guilds[gID];
-            return [null, options];
+            return [null, data];
         }
 
         const wh = guild[opt.chan];
         if (!wh) {
             delete this.guilds[gID][opt.chan];
-            return [null, options];
+            return [null, data];
         }
 
+        const options = Object.assign({}, data);
         if (opt.role) {
             if (opt.role === 'everyone') {
                 options.disableEveryone = false;
