@@ -16,7 +16,7 @@ class Role extends Command {
             name: 'rss role',
             description: 'Edit role to mention.',
             usage: 'rss role [feed name | feed url] [role]',
-            examples: ['rss role splashtoon everyone', 'rss role splashtoon splashtoonRole'],
+            examples: ['rss role splashtoon everyone', 'rss role splashtoon splashtoonRole', 'rss role splashtoon reset'],
         };
 
         this.options.argsMin = 2;
@@ -40,6 +40,12 @@ class Role extends Command {
         }
 
         let role;
+        // reset role
+        if (args[1] === 'reset') {
+            await this.rssHandler.updateRoleFeed(api.url, msg.channel.guild.id);
+            return this.sendSuccess(msg.channel, `Vous avez reinitialisé (supprimé) le role à mentionner pour **${api.name}**.`);
+        }
+
         if (args[1] === 'everyone' || args[1] === 'here') {
             role = args[1];
         }
@@ -54,7 +60,7 @@ class Role extends Command {
         }
 
         await this.rssHandler.updateRoleFeed(api.url, msg.channel.guild.id, role);
-        return this.sendSuccess(msg.channel, `Vous avez changé le role a mentionné pour **${api.name}** pour etre **${roleObj ? roleObj.name : role}**.`);
+        return this.sendSuccess(msg.channel, `Vous avez changé le role à mentionner pour **${api.name}** pour être **${roleObj ? roleObj.name : role}**.`);
     }
 }
 
