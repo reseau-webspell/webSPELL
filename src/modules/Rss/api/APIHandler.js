@@ -365,7 +365,10 @@ class APIHandler extends Base {
         }
 
         /** Subscribe the guild to the feed */
-        api.guilds[guild.id] = { chan: chan.id, role: null };
+        const existing = api.guilds[guild.id];
+        api.guilds[guild.id] = existing
+            ? { chan: chan.id, role: existing.role }
+            : { chan: chan.id, role: null };
 
         /** DB update */
         const schema = await RssService.getSchema();
@@ -432,7 +435,7 @@ class APIHandler extends Base {
      * @returns {Promise<Boolean>} true if worked
      * @memberof APIHandler
      */
-    async updateRoleFeed(feed, gID, role) {
+    async updateRoleFeed(feed, gID, role = null) {
         const api = this.getAPI(feed);
         if (!api) {
             return false;
