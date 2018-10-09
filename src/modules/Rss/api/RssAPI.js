@@ -74,7 +74,14 @@ class RssAPI {
      * @memberof RssAPI
      */
     async run() {
-        const [data, guid] = await this.queryFeed();
+        let data, guid;
+
+        try {
+            [data, guid] = await this.queryFeed();
+        } catch (err) {
+            this.axon.Logger.error(`API REQ - ${this.name} | ${this.url}\n${err.stack}`);
+            return false;
+        }
 
         if (guid !== null) {
             this.axon.Logger.verbose(`Pushing: ${this.url}`);
