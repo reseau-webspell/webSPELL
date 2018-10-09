@@ -51,7 +51,7 @@ class WebSpell extends AxonClient {
                     },
                     {
                         name: 'Liste des sites',
-                        value: '<:splashtoon:481835135734382613> `splashtoon`\n<:nintendoz:481835219733839882> `nintendoz`\n<:xbox:479594781425532928> `xbox`\n<:playstation:479594780939255818> `playstation`\n<:paladins:479594780943187968> `paladins`\n<:fortnite:481853380382294022> `fortnite`\n<:steam:481839393410252800> `steam`\n<:ubisoft:481854145356365825> `ubisoft`\n<:overwatch:482583961483345950> `overwatch`\n<:nintendo:481840308641071104> `ninten`\n<:vakarm:483570930342428672> `vakarm`',
+                        value: '<:splashtoon:481835135734382613> `splashtoon.fr`\n<:nintendoz:481835219733839882> `nintendoz.fr`\n<:xbox:479594781425532928> `xbox`\n<:playstation:479594780939255818> `playstation`\n<:paladins:479594780943187968> `paladins`\n<:fortnite:481853380382294022> `fortnite`\n<:steam:481839393410252800> `steam`\n<:ubisoft:481854145356365825> `ubisoft`\n<:overwatch:482583961483345950> `overwatch`\n<:nintendo:481840308641071104> `nintendo`\n<:vakarm:483570930342428672> `vakarm`',
                     },
                     {
                         name: 'Gestion',
