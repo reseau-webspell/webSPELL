@@ -139,14 +139,35 @@ class RssAPI {
      * @param {Object} options - options object to create the webhook
      * @memberof RssAPI
      */
-    pushAll(data) {
+    async pushAll(data) {
         for (const [gID, opt] of Object.entries(this.guilds)) {
             const [wh, options] = this.formatData(gID, opt, data);
             if (!wh) {
                 break;
             }
 
-            this.executeWH(gID, opt, wh, options);
+            let guild, switched;
+            if (/^[0-9]*$/.test(opt.role)) {
+                guild = this.bot.guilds.get(gID);
+                const role = guild.roles.get(opt.role);
+                if (role && !role.mentionable) {
+                    try {
+                        await guild.editRole(role.id, { mentionable: true }, 'WebSpell News');
+                    } catch (e) {
+                        //
+                    }
+
+                    switched = true;
+                }
+            }
+
+            this.executeWH(gID, opt, wh, options)
+                .then(() => {
+                    if (switched) {
+                        guild.editRole(opt.role, { mentionable: false }, 'WebSpell News')
+                            .catch();
+                    }
+                });
         }
     }
 

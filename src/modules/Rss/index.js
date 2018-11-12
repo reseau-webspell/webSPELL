@@ -6,6 +6,7 @@ import APIHandler from './api/APIHandler';
 
 import * as commands from './commands/index';
 // import * as events from './events/index';
+import RssSchema from './models/RssSchema';
 
 class Rss extends Module {
     constructor(...args) {
@@ -23,7 +24,7 @@ class Rss extends Module {
 
         this.APIHandler = new APIHandler(this);
 
-        this.init(commands);
+        this.init(commands, undefined, { RssSchema });
     }
 }
 
