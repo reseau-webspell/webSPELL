@@ -5,7 +5,7 @@
   "author": "KhaaZ#0001",
   "license": "ISC",
   "dependencies": {
-    "axoncore": "^0.9.5",
+    "axoncore": "^0.9.6",
     "chalk": "^2.4.1",
     "eris": "git+https://github.com/Khaazz/eris.git#axoncore",
     "esm": "^3.0.84",
