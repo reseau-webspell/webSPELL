@@ -40,7 +40,7 @@ class APIHandler extends Base {
         /** All Apis { FeedURL => APIObject } */
         this.apis = new Collection(RssAPI);
 
-        this.time = 600000;
+        this.time = 300000;
         this.ready = false;
     }
 
