@@ -1,6 +1,6 @@
 'use strict';
 
-import { Event } from '../../../../..';
+import { Event } from 'axoncore';
 
 class GuildDelete extends Event {
     constructor(...args) {
