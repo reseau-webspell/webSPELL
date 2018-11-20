@@ -146,28 +146,7 @@ class RssAPI {
                 break;
             }
 
-            let guild, switched;
-            if (/^[0-9]*$/.test(opt.role)) {
-                guild = this.bot.guilds.get(gID);
-                const role = guild.roles.get(opt.role);
-                if (role && !role.mentionable) {
-                    try {
-                        await guild.editRole(role.id, { mentionable: true }, 'WebSpell News');
-                    } catch (e) {
-                        //
-                    }
-
-                    switched = true;
-                }
-            }
-
-            this.executeWH(gID, opt, wh, options)
-                .then(() => {
-                    if (switched) {
-                        guild.editRole(opt.role, { mentionable: false }, 'WebSpell News')
-                            .catch();
-                    }
-                });
+            await this.pushOne(gID, opt, wh, options);
         }
     }
 
@@ -190,7 +169,45 @@ class RssAPI {
             return false;
         }
 
+        return this.pushOne(gID, opt, wh, options);
+    }
+
+    /**
+     * Push one news with all given arguments correct.
+     * Enable/disable mentionable on the role to make the bot automatically role mention correctly.
+     *
+     * @param {String} gID
+     * @param {Object} opt
+     * @param {Object} wh
+     * @param {Object} options
+     * @returns
+     * @memberof RssAPI
+     */
+    async pushOne(gID, opt, wh, options) {
+        let guild;
+        let switched = false;
+        if (/^[0-9]*$/.test(opt.role)) {
+            guild = this.bot.guilds.get(gID);
+            const role = guild.roles.get(opt.role);
+            if (role && !role.mentionable) {
+                try {
+                    await guild.editRole(role.id, { mentionable: true }, 'WebSpell News');
+                    switched = true;
+                } catch (e) {
+                    //
+                }
+            }
+        }
+
         const res = await this.executeWH(gID, opt, wh, options);
+        if (switched) { // disable mentionable if needed
+            try {
+                await guild.editRole(opt.role, { mentionable: false }, 'WebSpell News');
+            } catch (err) {
+                //
+            }
+        }
+
         return res;
     }
 
