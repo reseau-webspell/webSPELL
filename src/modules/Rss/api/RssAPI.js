@@ -145,8 +145,10 @@ class RssAPI {
             if (!wh) {
                 break;
             }
-
+            console.log('PUSH - START\n')
             await this.pushOne(gID, opt, wh, options);
+            console.log('PUSH - END\n\n')
+            await this.axon.Utils.sleep(1000);
         }
     }
 
@@ -188,12 +190,16 @@ class RssAPI {
         let switched = false;
         if (/^[0-9]*$/.test(opt.role)) {
             guild = this.bot.guilds.get(gID);
+            console.log(guild.name);
             const role = guild.roles.get(opt.role);
             if (role && !role.mentionable) {
                 try {
+                    console.log("\nrole mention\n");
                     await guild.editRole(role.id, { mentionable: true }, 'WebSpell News');
                     switched = true;
+                    console.log("mentionable YES\n");
                 } catch (e) {
+                    console.log("mentionable NO\n");
                     //
                 }
             }
@@ -202,8 +208,11 @@ class RssAPI {
         const res = await this.executeWH(gID, opt, wh, options);
         if (switched) { // disable mentionable if needed
             try {
+                console.log("mentionable swith back\n");
                 await guild.editRole(opt.role, { mentionable: false }, 'WebSpell News');
+                console.log("mentionable swith back YES\n");
             } catch (err) {
+                console.log("mentionable swith back NO\n");
                 //
             }
         }
@@ -245,6 +254,7 @@ class RssAPI {
             } else {
                 options.content = `<@&${opt.role}> ` + options.content;
             }
+            console.log('role to mention' + opt.role + '\n');
         }
 
         return [wh, options];
@@ -263,11 +273,14 @@ class RssAPI {
      */
     async executeWH(gID, opt, wh, options) {
         try {
+            console.log("execute Webhook\n");
             await this.bot.executeWebhook(wh.id, wh.token, options);
+            console.log("execute WH YES\n");
             return true;
         } catch (err) {
             delete this.guilds[gID];
             delete this.handler.guilds.get(gID)[opt.chan];
+            console.log("execute WH NO\n");
             return false;
         }
     }
