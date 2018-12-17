@@ -78,6 +78,7 @@ class RssAPI {
 
         try {
             [data, guid] = await this.queryFeed();
+            console.log('query success\n')
         } catch (err) {
             this.axon.Logger.error(`API REQ - ${this.name} | ${this.url}\n${err.stack}`);
             return false;
@@ -140,11 +141,14 @@ class RssAPI {
      * @memberof RssAPI
      */
     async pushAll(data) {
+        console.log('== PUSH LOOP ==\n')
         for (const [gID, opt] of Object.entries(this.guilds)) {
             const [wh, options] = this.formatData(gID, opt, data);
             if (!wh) {
                 break;
             }
+            console.log('- PUSH ' + gID + ' -');
+
             console.log('PUSH - START\n')
             await this.pushOne(gID, opt, wh, options);
             console.log('PUSH - END\n\n')
@@ -188,7 +192,9 @@ class RssAPI {
     async pushOne(gID, opt, wh, options) {
         let guild;
         let switched = false;
+        console.log('PUSH ONE\n')
         if (/^[0-9]*$/.test(opt.role)) {
+            console.log('Role Mention\n')
             guild = this.bot.guilds.get(gID);
             console.log(guild.name);
             const role = guild.roles.get(opt.role);
@@ -204,8 +210,9 @@ class RssAPI {
                 }
             }
         }
-
+        console.log('Pre execute\n')
         const res = await this.executeWH(gID, opt, wh, options);
+        console.log('Post execute\n')        
         if (switched) { // disable mentionable if needed
             try {
                 console.log("mentionable swith back\n");
@@ -231,15 +238,18 @@ class RssAPI {
      * @memberof RssAPI
      */
     formatData(gID, opt, data) {
+        console.log('format data\n')
         const guild = this.handler.guilds.get(gID);
         if (!guild) {
             delete this.guilds[gID];
+            console.log('!guild - END\n')
             return [null, data];
         }
 
         const wh = guild[opt.chan];
         if (!wh) {
             delete this.guilds[gID][opt.chan];
+            console.log('!wh - END\n')
             return [null, data];
         }
 
@@ -254,7 +264,7 @@ class RssAPI {
             } else {
                 options.content = `<@&${opt.role}> ` + options.content;
             }
-            console.log('role to mention' + opt.role + '\n');
+            console.log('role to mention ' + opt.role + '\n');
         }
 
         return [wh, options];

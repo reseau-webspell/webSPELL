@@ -299,7 +299,7 @@ class APIHandler extends Base {
             webhook = gObj[chan.id];
 
             /** Test Webhook validity */
-            if (!webhook) {
+            if (webhook) {
                 try {
                     await this.bot.getWebhook(webhook.id, webhook.token);
                 } catch (err) {
