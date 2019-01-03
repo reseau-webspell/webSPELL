@@ -117,7 +117,7 @@ class APIHandler extends Base {
     async run() {
 
         let res = false;
-        for (const api in this.apis.values()) {
+        for (const api of this.apis.values()) {
             console.log('======= ' + api.name + ' =======\n');
             res = await api.run()
 
