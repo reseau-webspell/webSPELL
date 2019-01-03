@@ -86,7 +86,7 @@ class RssAPI {
 
         if (guid !== null) {
             this.axon.Logger.verbose(`Pushing: ${this.url}`);
-            this.pushAll(data);
+            await this.pushAll(data);
 
             /** new last => update */
             this.last = guid;
