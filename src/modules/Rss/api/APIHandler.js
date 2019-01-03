@@ -116,11 +116,13 @@ class APIHandler extends Base {
      */
     async run() {
 
-        let res = false;
+        let result = false;
         for (const api of this.apis.values()) {
             console.log('======= ' + api.name + ' =======\n');
-            res = await api.run()
-
+            const res = await api.run()
+            if (res) {
+                result = true;
+            }
             console.log(' sleep \n');
             await this.axon.Utils.sleep(1000);
         }
