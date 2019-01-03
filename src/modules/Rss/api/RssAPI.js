@@ -145,7 +145,7 @@ class RssAPI {
         for (const [gID, opt] of Object.entries(this.guilds)) {
             const [wh, options] = this.formatData(gID, opt, data);
             if (!wh) {
-                break;
+                continue;
             }
             console.log('- PUSH ' + gID + ' -');
 
