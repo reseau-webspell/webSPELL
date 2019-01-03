@@ -115,16 +115,34 @@ class APIHandler extends Base {
      * @memberof APIHandler
      */
     async run() {
-        const promises = this.apis.map(a => a.run());
-        const result = await Promise.all(promises);
 
-        // If one send back true, it means that it updated last => DB update
-        if (result.includes(true)) {
+        let res = false;
+        for (const api in this.apis.values()) {
+            console.log('======= ' + api.name + ' =======\n');
+            res = await api.run()
+
+            console.log(' sleep \n');
+            await this.axon.Utils.sleep(1000);
+        }
+
+        //If one send back true, it means that it updated last => DB update
+        if (res) {
             await RssService.updateSchema(
                 this.apis.map(a => a.toMongoFormat()),
                 this.guilds.toObject(),
             );
         }
+
+        // const promises = this.apis.map(a => a.run());
+        // const result = await Promise.all(promises);
+
+        // // If one send back true, it means that it updated last => DB update
+        // if (result.includes(true)) {
+        //     await RssService.updateSchema(
+        //         this.apis.map(a => a.toMongoFormat()),
+        //         this.guilds.toObject(),
+        //     );
+        // }
     }
 
     //
