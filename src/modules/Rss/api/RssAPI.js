@@ -152,6 +152,7 @@ class RssAPI {
             console.log('PUSH - START\n')
             await this.pushOne(gID, opt, wh, options);
             console.log('PUSH - END\n\n')
+            console.log(' sleep \n');
             await this.axon.Utils.sleep(1000);
         }
     }
