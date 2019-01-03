@@ -38,7 +38,7 @@ class WebSpell extends AxonClient {
             embed: {
                 author: {
                     name: this.client.user.username,
-                    url: 'https://webspell.fr',
+                    url: 'https://webspell.fr/bot/',
                     icon_url: this.client.user.avatarURL,
                 },
                 title: 'Message d\'aide',
@@ -50,8 +50,12 @@ class WebSpell extends AxonClient {
                         value: '`//rss enable <site> <#channel>`\n`//rss disable <site>`\n`//rss list`\n`//rss role <site> <votre-role>`\n`//rss push <site>`',
                     },
                     {
-                        name: 'Liste des sites',
+                        name: 'Liste des sites 1/2',
                         value: '<:splashtoon:481835135734382613> `splashtoon.fr`\n<:nintendoz:481835219733839882> `nintendoz.fr`\n<:fortnitro:495155274647076864> `fortnitro.fr`\n<:xboxmag:502059359636029450> `xboxmag`\n<:playstation:479594780939255818> `playstation`\n<:paladins:479594780943187968> `paladins`\n<:fortnite:481853380382294022> `fortnite`\n<:steam:481839393410252800> `steam`\n<:ubisoft:481854145356365825> `ubisoft`\n<:overwatch:482583961483345950> `overwatch`\n<:nintendo:481840308641071104> `nintendo`\n<:vakarm:483570930342428672> `vakarm`\n<:gameblog:500287129541148673> `gameblog`\n<:pugilatdesetoiles:502057987184263188> `pugilatdesetoiles.com`\n<:ebtv:502055434060824576> `ebtv`\n<:Xboxygen:502839047471759370> `xboxygen`\n<:xboxlive:502839526549618688> `xboxlive`\n<:pokemontrash:509749822027464704> `pokemontrash.com`\n<:elderscrollsonline:510034469139251200> `elderscrollsonline.com`\n<:jvc:500287153935482930> `jvc`\n<:minecraftfr:502839680090505236> `minecraft.fr`\n<:diablo3:502136010168205352> `diablo3`\n<:flickshot:510036720704684032> `flickshot`',
+                    },
+					{
+						name: 'Liste des sites 2/2',
+                        value: '<:rockstarmag:516971028144979988> `rockstarmag`\n',
                     },
                     {
                         name: 'Gestion',

@@ -40,7 +40,7 @@ class APIHandler extends Base {
         /** All Apis { FeedURL => APIObject } */
         this.apis = new Collection(RssAPI);
 
-        this.time = 300000;
+        this.time = 420000;
         this.ready = false;
     }
 
@@ -299,7 +299,7 @@ class APIHandler extends Base {
             webhook = gObj[chan.id];
 
             /** Test Webhook validity */
-            if (!webhook) {
+            if (webhook) {
                 try {
                     await this.bot.getWebhook(webhook.id, webhook.token);
                 } catch (err) {
