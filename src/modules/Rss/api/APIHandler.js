@@ -128,7 +128,7 @@ class APIHandler extends Base {
         }
 
         //If one send back true, it means that it updated last => DB update
-        if (res) {
+        if (result) {
             await RssService.updateSchema(
                 this.apis.map(a => a.toMongoFormat()),
                 this.guilds.toObject(),
