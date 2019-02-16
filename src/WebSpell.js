@@ -1,6 +1,6 @@
 'use strict';
 
-import AxonClient from 'axoncore';
+import { AxonClient, Resolver } from 'axoncore';
 
 import * as modules from './modules/index';
 
@@ -13,24 +13,18 @@ import * as modules from './modules/index';
  * @extends {AxonCore.AxonClient}
  */
 class WebSpell extends AxonClient {
-    constructor(token, options, config) {
-        super(token, options, config, modules);
+    constructor(client, axonOptions) {
+        super(client, axonOptions, modules);
+
+        this.Resolver = Resolver; // axonCore 1.0
     }
 
     initStaff() {
         this.staff.manager = [];
     }
 
-    /** CURRENTLY DISABLED */
     init() {
-        return new Promise((resolve, reject) => {
-            try {
-                this.client.once('ready', () => this.modules.get('Rss').APIHandler.init());
-                resolve(true);
-            } catch (err) {
-                reject(err);
-            }
-        });
+        return Promise.resolve(); // moved RSS start to RSS module
     }
 
     sendFullHelp(msg) {

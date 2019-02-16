@@ -1,6 +1,7 @@
 'use strict';
 
 import WebSpell from './WebSpell';
+import Client from 'eris';
 
 import axonConf from './configs/customConf.json';
 import tokenConf from './configs/tokenConf.json';
@@ -10,16 +11,9 @@ const AxonOptions = {
     axonConf,
     templateConf,
     tokenConf,
-
-    resolver: null,
-    utils: null, // use your own Utils
-    logger: null,
-    db: null,
-    axonSchema: null,
-    guildSchema: null,
 };
 
-const Bot = new WebSpell(
+const client = new Client(
     tokenConf.bot.token,
     {
         autoreconnect: true,
@@ -29,7 +23,11 @@ const Bot = new WebSpell(
         getAllUsers: true,
         messageLimit: 100,
         restMode: true,
-    },
+    }
+);
+
+const Bot = new WebSpell(
+    client,
     AxonOptions
 );
 
