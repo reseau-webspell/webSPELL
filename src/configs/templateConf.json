@@ -18,8 +18,8 @@
     "message": {
         "error": {
             "permBot": "Je n'ai pas les permissions nécessaire pour cette action!",
-            "permSource": "Vous n'avez pas les permissions nécessaires pour cette action!",
-            "permDest": "Cet utilisateur est un mod/admin, je ne peux pas faire ca!",
+            "permSource": "Vous n'avez pas les permissions neécessaires pour cette action!",
+            "permTarget": "Cet utilisateur est un mod/admin, je ne peux pas faire ca!",
             "cooldown": "Eh! Moins vite!",
             "general": "An unexpected error occured! Contact Bot developers."
         }

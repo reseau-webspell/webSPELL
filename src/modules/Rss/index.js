@@ -24,6 +24,8 @@ class Rss extends Module {
 
         this.APIHandler = new APIHandler(this);
 
+        this.bot.once('ready', () => this.APIHandler.init());
+
         this.init(commands, undefined, { RssSchema });
     }
 }

@@ -115,19 +115,16 @@ class APIHandler extends Base {
      * @memberof APIHandler
      */
     async run() {
-
         let result = false;
         for (const api of this.apis.values()) {
-            console.log('======= ' + api.name + ' =======\n');
-            const res = await api.run()
+            const res = await api.run();
             if (res) {
                 result = true;
             }
-            console.log(' sleep \n');
             await this.axon.Utils.sleep(1000);
         }
 
-        //If one send back true, it means that it updated last => DB update
+        // If one send back true, it means that it updated last => DB update
         if (result) {
             await RssService.updateSchema(
                 this.apis.map(a => a.toMongoFormat()),

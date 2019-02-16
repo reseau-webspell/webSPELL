@@ -3,7 +3,12 @@ import Bot from './Bot';
 // packages
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/webSpellDB')
+mongoose.connect('mongodb://localhost/webSpellDB', {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    autoReconnect: true,
+})
     .then(() => {
         Bot.Logger.notice('Connected to webSpell DataBase.');
         Bot.AxonUtils.triggerWebhook('loader', {

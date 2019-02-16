@@ -78,7 +78,6 @@ class RssAPI {
 
         try {
             [data, guid] = await this.queryFeed();
-            console.log('query success\n')
         } catch (err) {
             this.axon.Logger.error(`API REQ - ${this.name} | ${this.url}\n${err.stack}`);
             return false;
@@ -141,18 +140,13 @@ class RssAPI {
      * @memberof RssAPI
      */
     async pushAll(data) {
-        console.log('== PUSH LOOP ==\n')
         for (const [gID, opt] of Object.entries(this.guilds)) {
             const [wh, options] = this.formatData(gID, opt, data);
             if (!wh) {
                 continue;
             }
-            console.log('- PUSH ' + gID + ' -');
 
-            console.log('PUSH - START\n')
             await this.pushOne(gID, opt, wh, options);
-            console.log('PUSH - END\n\n')
-            console.log(' sleep \n');
             await this.axon.Utils.sleep(1000);
         }
     }
@@ -193,34 +187,23 @@ class RssAPI {
     async pushOne(gID, opt, wh, options) {
         let guild;
         let switched = false;
-        console.log('PUSH ONE\n')
         if (/^[0-9]*$/.test(opt.role)) {
-            console.log('Role Mention\n')
             guild = this.bot.guilds.get(gID);
-            console.log(guild.name);
             const role = guild.roles.get(opt.role);
             if (role && !role.mentionable) {
                 try {
-                    console.log("\nrole mention\n");
                     await guild.editRole(role.id, { mentionable: true }, 'WebSpell News');
                     switched = true;
-                    console.log("mentionable YES\n");
                 } catch (e) {
-                    console.log("mentionable NO\n");
                     //
                 }
             }
         }
-        console.log('Pre execute\n')
         const res = await this.executeWH(gID, opt, wh, options);
-        console.log('Post execute\n')        
         if (switched) { // disable mentionable if needed
             try {
-                console.log("mentionable swith back\n");
                 await guild.editRole(opt.role, { mentionable: false }, 'WebSpell News');
-                console.log("mentionable swith back YES\n");
             } catch (err) {
-                console.log("mentionable swith back NO\n");
                 //
             }
         }
@@ -239,18 +222,15 @@ class RssAPI {
      * @memberof RssAPI
      */
     formatData(gID, opt, data) {
-        console.log('format data\n')
         const guild = this.handler.guilds.get(gID);
         if (!guild) {
             delete this.guilds[gID];
-            console.log('!guild - END\n')
             return [null, data];
         }
 
         const wh = guild[opt.chan];
         if (!wh) {
             delete this.guilds[gID][opt.chan];
-            console.log('!wh - END\n')
             return [null, data];
         }
 
@@ -265,7 +245,6 @@ class RssAPI {
             } else {
                 options.content = `<@&${opt.role}> ` + options.content;
             }
-            console.log('role to mention ' + opt.role + '\n');
         }
 
         return [wh, options];
@@ -284,14 +263,11 @@ class RssAPI {
      */
     async executeWH(gID, opt, wh, options) {
         try {
-            console.log("execute Webhook\n");
             await this.bot.executeWebhook(wh.id, wh.token, options);
-            console.log("execute WH YES\n");
             return true;
         } catch (err) {
             delete this.guilds[gID];
             delete this.handler.guilds.get(gID)[opt.chan];
-            console.log("execute WH NO\n");
             return false;
         }
     }
