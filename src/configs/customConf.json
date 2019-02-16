@@ -1,8 +1,8 @@
 {
     "general": {
         "name": "webSPELL",
-        "description": "webSPELL - RSS news and others (webSPELL network)",
-        "version": "1.0.0",
+        "description": "webSPELL - RSS news (webSPELL network)",
+        "version": "1.2.2",
         "library": "eris"
     },
     
