@@ -41,7 +41,7 @@ class Enable extends Command {
         if (!channel) {
             return this.sendError(msg.channel, 'Ce channel n\'existe pas!');
         }
-        if (!this.AxonUtils.hasChannelPerms(channel, ['manageWebhooks'])) {
+        if (!this.Utils.hasChannelPerms(channel, ['manageWebhooks'])) {
             return this.sendBotPerms(msg.channel, ['manageWebhooks']);
         }
 
