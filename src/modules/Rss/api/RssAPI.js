@@ -194,7 +194,9 @@ class RssAPI {
         if (/^[0-9]*$/.test(opt.role)) {
             guild = this.bot.guilds.get(gID);
             if (!guild) {
-                this.axon.Logger.warn(`Guild not found: ${gID}`);
+                this.axon.Logger.warn(`Guild not found: ${gID}. Removing..`);
+                delete this.guilds[gID];
+                this.handler.guilds.delete(gID);
                 return;
             }
             const role = guild.roles.get(opt.role);
