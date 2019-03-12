@@ -102,8 +102,9 @@ class APIHandler extends Base {
             if (!this.ready) {
                 return;
             }
-            this.Logger.verbose('RSS FEED - API request.');
+            this.Logger.verbose('RSS FEED - START API request cycle.');
             await this.run();
+            this.Logger.verbose('RSS FEED - END API request cycle.');
         }, this.time);
     }
 
@@ -126,6 +127,7 @@ class APIHandler extends Base {
 
         // If one send back true, it means that it updated last => DB update
         if (result) {
+            this.Logger.verbose('RSS FEED - updating Database.');
             await RssService.updateSchema(
                 this.apis.map(a => a.toMongoFormat()),
                 this.guilds.toObject(),
