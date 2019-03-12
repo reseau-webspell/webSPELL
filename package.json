@@ -8,12 +8,12 @@
     "axoncore": "^1.0.0",
     "chalk": "^2.4.2",
     "eris": "git+https://github.com/Khaazz/eris.git#axoncore",
-    "esm": "^3.2.5",
+    "esm": "^3.2.16",
     "eventemitter3": "^3.1.0",
     "execa": "^1.0.0",
-    "mongoose": "^5.4.13",
-    "pm2": "^3.2.9",
-    "rss-parser": "^3.6.2",
+    "mongoose": "^5.4.19",
+    "pm2": "^3.4.0",
+    "rss-parser": "^3.6.3",
     "superagent": "^4.1.0"
   },
   "devDependencies": {
