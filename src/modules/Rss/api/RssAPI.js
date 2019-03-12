@@ -145,8 +145,12 @@ class RssAPI {
             if (!wh) {
                 continue;
             }
+            try {
+                await this.pushOne(gID, opt, wh, options);
+            } catch (err) {
+                this.axon.Logger.emerg(`Critical Error: ${gID}\n${err.stack}`);
+            }
 
-            await this.pushOne(gID, opt, wh, options);
             await this.axon.Utils.sleep(1000);
         }
     }
@@ -189,6 +193,10 @@ class RssAPI {
         let switched = false;
         if (/^[0-9]*$/.test(opt.role)) {
             guild = this.bot.guilds.get(gID);
+            if (!guild) {
+                this.axon.Logger.warn(`Guild not found: ${gID}`);
+                return;
+            }
             const role = guild.roles.get(opt.role);
             if (role && !role.mentionable) {
                 try {
