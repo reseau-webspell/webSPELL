@@ -30,9 +30,11 @@ class APIHandler extends Base {
 
         this._module = module;
         /** Parser used by every API */
-        this.parser = new RssParser({
-            headers: { 'User-Agent': 'webSPELL-bot' },
-        });
+        // this.parser = new RssParser({
+        //     headers: { 'User-Agent': 'webSPELL-bot' },
+        // });
+        
+        this.parser = new RssParser()
 
         /** All Guilds
          * { GuildID => { ChanID: {webhook} } }
