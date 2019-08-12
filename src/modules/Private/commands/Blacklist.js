@@ -48,20 +48,20 @@ class Blacklist extends Command {
 
         if (guild) {
             return conf.bannedGuilds.includes(guild.id)
-                ? this.sendMessage(msg.channel, `**${guild.name}**-[${guild.id}] is blacklisted! <:error:372786041637306368>`)
-                : this.sendMessage(msg.channel, `**${guild.name}**-[${guild.id}] is not blacklisted! <:success:372785537221787658>`);
+                ? this.sendMessage(msg.channel, `**${guild.name}**-[${guild.id}] is blacklisted! <:error:603603044516757554>`)
+                : this.sendMessage(msg.channel, `**${guild.name}**-[${guild.id}] is not blacklisted! <:success:603603044491460638>`);
         }
 
         if (user) {
             return conf.bannedUsers.includes(user.id)
-                ? this.sendMessage(msg.channel, `**${user.username}#${user.discriminator}**-[${user.id}] is blacklisted! <:error:372786041637306368>`)
-                : this.sendMessage(msg.channel, `**${user.username}#${user.discriminator}**-[${user.id}] is not blacklisted! <:success:372785537221787658>`);
+                ? this.sendMessage(msg.channel, `**${user.username}#${user.discriminator}**-[${user.id}] is blacklisted! <:error:603603044516757554>`)
+                : this.sendMessage(msg.channel, `**${user.username}#${user.discriminator}**-[${user.id}] is not blacklisted! <:success:603603044491460638>`);
         }
 
         if (conf.bannedGuilds.includes(black)) {
-            return this.sendMessage(msg.channel, `${black} is blacklisted! <:error:372786041637306368>`);
+            return this.sendMessage(msg.channel, `${black} is blacklisted! <:error:603603044516757554>`);
         }
-        return this.sendMessage(msg.channel, `${black} is not blacklisted! <:success:372785537221787658>`);
+        return this.sendMessage(msg.channel, `${black} is not blacklisted! <:success:603603044491460638>`);
     }
 }
 

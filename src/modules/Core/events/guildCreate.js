@@ -29,7 +29,7 @@ class GuildCreate extends Event {
             embeds: [
                 {
                     color: 3066993, // green
-                    title: '<:success:470977663553503242> Guild created',
+                    title: '<:success:603603044491460638> Guild created',
                     footer: {
                         text: `${this.bot.user.username} | Created at`,
                     },

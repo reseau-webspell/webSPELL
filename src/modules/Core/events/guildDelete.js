@@ -29,7 +29,7 @@ class GuildDelete extends Event {
             embeds: [
                 {
                     color: 15158332, // red
-                    title: '<:error:470977663356633099> Guild deleted',
+                    title: '<:error:603603044516757554> Guild deleted',
                     footer: {
                         text: `${this.bot.user.username} | Deleted at`,
                     },

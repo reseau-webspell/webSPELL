@@ -45,11 +45,11 @@ class WebSpell extends AxonClient {
                     },
                     {
                         name: 'Liste des sites 1/2',
-                        value: '<:splashtoon:481835135734382613> `splashtoon.fr`\n<:nintendoz:481835219733839882> `nintendoz.fr`\n<:fortnitro:495155274647076864> `fortnitro.fr`\n<:xboxmag:502059359636029450> `xboxmag`\n<:playstation:479594780939255818> `playstation`\n<:paladins:479594780943187968> `paladins`\n<:fortnite:481853380382294022> `fortnite`\n<:steam:481839393410252800> `steam`\n<:ubisoft:481854145356365825> `ubisoft`\n<:overwatch:482583961483345950> `overwatch`\n<:nintendo:481840308641071104> `nintendo`\n<:vakarm:483570930342428672> `vakarm`\n<:gameblog:500287129541148673> `gameblog`\n<:pugilatdesetoiles:502057987184263188> `pugilatdesetoiles.com`\n<:ebtv:502055434060824576> `ebtv`\n<:Xboxygen:502839047471759370> `xboxygen`\n<:xboxlive:502839526549618688> `xboxlive`\n<:pokemontrash:509749822027464704> `pokemontrash.com`\n<:elderscrollsonline:510034469139251200> `elderscrollsonline.com`\n<:jvc:500287153935482930> `jvc`\n<:minecraftfr:502839680090505236> `minecraft.fr`\n<:diablo3:502136010168205352> `diablo3`\n<:flickshot:510036720704684032> `flickshot`',
+                        value: '<:splashtoon:603561200835493935> `splashtoon.fr`\n<:nintendoz:603562424422891539> `nintendoz.fr`\n<:fortnitro:603562293434908682> `fortnitro.fr`\n<:logoac:603561645557547038> `animal-crossing.fr`\n<:xboxmag:603560918210576384> `xboxmag`\n<:playstation:603560918890053645> `playstation`\n<:paladins:603560919645290515> `paladins`\n<:fortnite:603560917883420682> `fortnite`\n<:steam:603560922736230404> `steam`\n<:ubisoft:603560920337088516> `ubisoft`\n<:overwatch:603560917485223987> `overwatch`\n<:nintendo:603560918772613130> `nintendo`\n<:vakarm:603560922643955732> `vakarm`\n<:gameblog:603560919347232768> `gameblog`\n<:pugilatdesetoiles:603560918927933450> `pugilatdesetoiles.com`\n<:ebtv:603560915417169921> `ebtv`\n<:Xboxygen:603560917283766272> `xboxygen`\n<:xboxlive:603560917812379678> `xboxlive`\n<:pokemontrash:603560918747709462> `pokemontrash.com`\n<:jvc:603560915769491456> `jvc`\n<:minecraftfr:603560917216657408> `minecraft.fr`\n<:diablo3:603560923441135627> `diablo3`',
                     },
 					{
 						name: 'Liste des sites 2/2',
-                        value: '<:rockstarmag:516971028144979988> `rockstarmag`\n',
+                        value: '<:rockstarmag:603560921989644303> `rockstarmag`\n<:elderscrollsonline:603560922484834314> `elderscrollsonline.com`\n',
                     },
                     {
                         name: 'Gestion',
@@ -57,7 +57,7 @@ class WebSpell extends AxonClient {
                     },
                     {
                         name: 'Serveur de Support',
-                        value: 'https://discord.gg/49sApBV',
+                        value: 'https://discord.gg/ZHndGnn',
                     },
                 ],
                 timestamp: new Date(),
